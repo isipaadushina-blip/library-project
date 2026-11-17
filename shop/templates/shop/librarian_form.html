@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    <h1>Форма сотрудника</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Сохранить</button>
+    </form>
+    <br>
+    <a href="{% url 'librarian_list' %}">← Отмена</a>
+{% endblock %}

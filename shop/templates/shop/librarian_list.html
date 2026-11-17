@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    <h1>Сотрудники библиотеки</h1>
+    <a href="{% url 'librarian_create' %}" class="btn">Добавить сотрудника</a>
+    <hr>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for lib in librarians %}
+            <div class="card" style="width: 200px;">
+                <!-- Вывод фото сотрудника -->
+                {% if lib.photo %}
+                    <img src="{{ lib.photo.url }}" alt="{{ lib.name }}" style="width: 100%; height: 250px; object-fit: cover;">
+                {% else %}
+                    <div style="width: 100%; height: 250px; background: #eee; display: flex; align-items: center; justify-content: center;">Нет фото</div>
+                {% endif %}
+                <h3><a href="{% url 'librarian_detail' lib.pk %}">{{ lib.name }}</a></h3>
+                <p>{{ lib.position }}</p>
+                <a href="{% url 'librarian_update' lib.pk %}" class="btn">Ред.</a>
+                <a href="{% url 'librarian_delete' lib.pk %}" class="btn btn-danger">Удал.</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

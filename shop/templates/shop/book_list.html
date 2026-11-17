@@ -1,0 +1,22 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    <h1>Каталог книг</h1>
+    <a href="{% url 'book_create' %}" class="btn">Добавить книгу</a>
+    <hr>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for book in books %}
+            <div class="card" style="width: 200px;">
+                <!-- Вывод обложки -->
+                {% if book.cover %}
+                    <img src="{{ book.cover.url }}" alt="{{ book.title }}" style="width: 100%; height: 250px; object-fit: cover;">
+                {% else %}
+                    <div style="width: 100%; height: 250px; background: #eee; display: flex; align-items: center; justify-content: center;">Нет обложки</div>
+                {% endif %}
+                <h3><a href="{% url 'book_detail' book.pk %}">{{ book.title }}</a></h3>
+                <p>{{ book.year }} г.</p>
+                <a href="{% url 'book_update' book.pk %}" class="btn">Ред.</a>
+                <a href="{% url 'book_delete' book.pk %}" class="btn btn-danger">Удал.</a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    <h1>{{ librarian.name }}</h1>
+    {% if librarian.photo %}
+        <img src="{{ librarian.photo.url }}" alt="{{ librarian.name }}" width="300">
+    {% endif %}
+    <p><b>Должность:</b> {{ librarian.position }}</p>
+    <hr>
+    <a href="{% url 'librarian_list' %}">← Назад к списку</a>
+{% endblock %}

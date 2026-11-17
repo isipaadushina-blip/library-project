@@ -1,0 +1,15 @@
+{% extends 'shop/base.html' %}
+{% block content %}
+    <h1>{{ book.title }}</h1>
+    {% if book.cover %}
+        <img src="{{ book.cover.url }}" alt="{{ book.title }}" width="300" style="float: left; margin-right: 20px;">
+    {% endif %}
+    <p><b>Год издания:</b> {{ book.year }}</p>
+    <p><b>Автор:</b> {{ book.author }}</p>
+    <p><b>Жанр:</b> {{ book.genre }}</p>
+    <p><b>Издательство:</b> {{ book.publisher }}</p>
+    <p><b>Аннотация:</b> {{ book.description }}</p>
+    <div style="clear: both;"></div>
+    <hr>
+    <a href="{% url 'book_list' %}">← Назад к каталогу</a>
+{% endblock %}

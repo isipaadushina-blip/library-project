@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Библиотека ВУЗа</title>
+    <style>
+        /* Цветовая палитра:
+           #273751 - Темно-синий (основной фон/текст)
+           #627890 - Пыльно-синий (акценты/кнопки)
+           #642226 - Бордовый (опасные действия/удаление)
+           #D6B896 - Бежевый (фон карточек/выделение)
+        */
+
+        body { 
+            font-family: 'Georgia', serif; /* Классический шрифт для книжного сайта */
+            background-color: #f4f1ea; /* Слегка бежевый фон страницы */
+            color: #273751; /* Темно-синий текст */
+            margin: 0; 
+            padding: 0; 
+        }
+        
+        /* Навигационное меню */
+        nav { 
+            background-color: #273751; /* Темно-синий */
+            padding: 15px 20px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        nav a { 
+            color: #D6B896; /* Бежевый текст */
+            margin-right: 20px; 
+            text-decoration: none; 
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav a:hover { 
+            color: #ffffff; 
+            text-decoration: underline; 
+        }
+        nav a.admin-link {
+            float: right;
+            color: #627890;
+        }
+
+        /* Контейнер для контента */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            color: #642226; /* Бордовый для заголовков */
+        }
+
+        /* Карточки книг/сотрудников */
+        .card { 
+            background-color: #ffffff;
+            border: 2px solid #D6B896; /* Бежевая рамка */
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+        }
+        
+        .card a {
+            color: #273751;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .card a:hover {
+            color: #627890;
+        }
+
+        /* Кнопки */
+        .btn { 
+            display: inline-block; 
+            padding: 8px 15px; 
+            background-color: #627890; /* Пыльно-синий */
+            color: white; 
+            text-decoration: none; 
+            border-radius: 4px; 
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        .btn:hover { 
+            background-color: #273751; /* При наведении темнеет */
+        }
+        
+        /* Кнопка удаления */
+        .btn-danger { 
+            background-color: #642226; /* Бордовый */
+        }
+        .btn-danger:hover { 
+            background-color: #4a181b; 
+        }
+
+        /* Формы */
+        form p {
+            margin-bottom: 15px;
+        }
+        form input, form select, form textarea {
+            padding: 8px;
+            border: 1px solid #627890;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        form input:focus, form select:focus, form textarea:focus {
+            outline: none;
+            border-color: #642226;
+            box-shadow: 0 0 5px rgba(100, 34, 38, 0.3);
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #D6B896;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'book_list' %}">Книги</a>
+        <a href="{% url 'author_list' %}">Авторы</a>
+        <a href="{% url 'genre_list' %}">Жанры</a>
+        <a href="{% url 'reader_list' %}">Читатели</a>
+        <a href="{% url 'librarian_list' %}">Сотрудники</a>
+        <a href="/admin/" class="admin-link">Админка</a>
+    </nav>
+    
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
